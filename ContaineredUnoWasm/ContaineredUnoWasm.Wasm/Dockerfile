@@ -6,10 +6,11 @@ RUN dotnet restore "ContaineredUnoWasm/ContaineredUnoWasm.Wasm/ContaineredUnoWas
 
 COPY ["ContaineredUnoWasm/ContaineredUnoWasm.Shared/", "ContaineredUnoWasm/ContaineredUnoWasm.Shared/"]
 COPY ["ContaineredUnoWasm/ContaineredUnoWasm.Wasm/", "ContaineredUnoWasm/ContaineredUnoWasm.Wasm/"]
-RUN dotnet build "ContaineredUnoWasm/ContaineredUnoWasm.Wasm/ContaineredUnoWasm.Wasm.csproj" -c Release -o /app/build 
+RUN dotnet build "ContaineredUnoWasm/ContaineredUnoWasm.Wasm/ContaineredUnoWasm.Wasm.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ContaineredUnoWasm/ContaineredUnoWasm.Wasm/ContaineredUnoWasm.Wasm.csproj" -c Release -o /app/publish
+ARG HELLO_PERSON
+RUN dotnet publish "ContaineredUnoWasm/ContaineredUnoWasm.Wasm/ContaineredUnoWasm.Wasm.csproj" -c Release -o /app/publish /p:HelloPerson=$HELLO_PERSON
 
 FROM ibebbs/wasm-serve:latest
 EXPOSE 80

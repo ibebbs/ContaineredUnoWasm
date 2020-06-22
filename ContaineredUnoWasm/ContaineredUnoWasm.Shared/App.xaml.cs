@@ -33,6 +33,8 @@ namespace ContaineredUnoWasm
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            //var configuration = Platform.Services.LoadConfiguration();
         }
 
         /// <summary>
