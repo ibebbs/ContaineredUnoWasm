@@ -1,4 +1,4 @@
-﻿FROM ibebbs/wasm-build:latest AS build
+﻿FROM unoplatform/wasm-build:latest AS build
 WORKDIR /src
 
 COPY ["ContaineredUnoWasm/ContaineredUnoWasm.Wasm/ContaineredUnoWasm.Wasm.csproj", "ContaineredUnoWasm/ContaineredUnoWasm.Wasm/ContaineredUnoWasm.Wasm.csproj"]
